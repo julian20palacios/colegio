@@ -13,34 +13,6 @@ class Categoria(models.Model):
         return self.descripcion_categoria
 
 
-# Tabla intermedia: relaciona una categoria con un usuario (por su PK).
-# El id del usuario que se usa es el pk del modelo Usuario (u.id).
-class CategoriaUsuario(models.Model):
-    id_registro = models.AutoField(primary_key=True, db_column='id_registro')
-    # FK a Categoria (usa su PK id_categoria).
-    categoria = models.ForeignKey(
-        Categoria,
-        on_delete=models.CASCADE,
-        db_column='id_categoria',
-        related_name='categorias_usuarios',
-    )
-    # FK al usuario autenticado (usa su PK id).
-    usuario = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE,
-        db_column='id_usuario',
-        related_name='categorias_usuarios',
-    )
-
-    class Meta:
-        db_table = 'categoria_usuario'
-        verbose_name_plural = 'Categorias de Usuario'
-
-    def __str__(self):
-        return f'{self.usuario_id} - {self.categoria_id}'
-
-
-
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.db import models
 
