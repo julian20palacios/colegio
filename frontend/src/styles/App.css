@@ -72,6 +72,7 @@ main {
 
 .private-theme .private-main {
   color: var(--private-text);
+  overflow-y: visible;
   transition: background-color 0.25s ease, color 0.25s ease;
 }
 

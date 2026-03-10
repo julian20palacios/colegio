@@ -1,7 +1,8 @@
 from django.db import models
+from django.conf import settings
 
 class Categoria(models.Model):
-    id_categoria = models.IntegerField(primary_key=True, db_column='id_categoria')
+    id_categoria = models.AutoField(primary_key=True, db_column='id_categoria')
     descripcion_categoria = models.CharField(max_length=150, db_column='descripcion_categoria')
 
     class Meta:
@@ -12,10 +13,33 @@ class Categoria(models.Model):
         return self.descripcion_categoria
 
 
+# Tabla intermedia: relaciona una categoria con un usuario (por su PK).
+# El id del usuario que se usa es el pk del modelo Usuario (u.id).
+class CategoriaUsuario(models.Model):
+    id_registro = models.AutoField(primary_key=True, db_column='id_registro')
+    # FK a Categoria (usa su PK id_categoria).
+    categoria = models.ForeignKey(
+        Categoria,
+        on_delete=models.CASCADE,
+        db_column='id_categoria',
+        related_name='categorias_usuarios',
+    )
+    # FK al usuario autenticado (usa su PK id).
+    usuario = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        db_column='id_usuario',
+        related_name='categorias_usuarios',
+    )
+
+    class Meta:
+        db_table = 'categoria_usuario'
+        verbose_name_plural = 'Categorias de Usuario'
+
+    def __str__(self):
+        return f'{self.usuario_id} - {self.categoria_id}'
 
 
-
-# Modelo de usuario personalizado para el inicio de sesión
 
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.db import models
@@ -53,5 +77,5 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
 
     def __str__(self):
-        return self.email
-
+        full_name = f"{self.nombre} {self.apellido}".strip()
+        return full_name or self.email

@@ -1,6 +1,6 @@
 ﻿.app-sidebar {
   width: 230px;
-  height: 100dvh;
+  height: 100%;
   min-height: 100dvh;
   flex-shrink: 0;
   background: var(--private-sidebar-bg);
@@ -9,7 +9,7 @@
   flex-direction: column;
   position: sticky;
   top: 0;
-  padding: 12px 10px 0;
+  padding: 12px 10px 10px;
   box-sizing: border-box;
   transition: width 0.25s ease, background-color 0.25s ease, color 0.25s ease;
   overflow: hidden;
@@ -68,6 +68,21 @@
   font-size: 16px;
 }
 
+.theme-btn-single {
+  border: 1px solid var(--private-border);
+  background: var(--private-surface-muted);
+  color: var(--private-sidebar-text);
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.theme-btn-single:hover {
+  background: var(--private-surface);
+}
+
 .sidebar-nav {
   display: flex;
   flex-direction: column;
@@ -76,6 +91,14 @@
   overflow-y: auto;
   overflow-x: hidden;
   min-width: 0;
+}
+
+.sidebar-footer {
+  margin-top: 12px;
+  padding-top: 8px;
+  display: flex;
+  justify-content: center;
+  border-top: 1px solid var(--private-sidebar-border);
 }
 
 .sidebar-item {
@@ -128,8 +151,7 @@
 
 .sidebar-toggle {
   align-self: center;
-  margin-top: 12px;
-  margin-bottom: 0;
+  margin: 0;
   border: 1px solid var(--private-border);
   background: var(--private-surface-muted);
   color: var(--private-sidebar-text);

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Categoria
+from .models import Categoria, CategoriaUsuario
 
 
 
@@ -7,6 +7,17 @@ from .models import Categoria
 class CategoriaAdmin(admin.ModelAdmin):
     list_display = ('id_categoria', 'descripcion_categoria')
     search_fields = ('descripcion_categoria',)
+
+
+@admin.register(CategoriaUsuario)
+class CategoriaUsuarioAdmin(admin.ModelAdmin):
+    list_display = ('id_registro', 'usuario', 'categoria')
+    list_filter = ('usuario', 'categoria')
+    search_fields = (
+        'usuario__email',
+        'usuario__username',
+        'categoria__descripcion_categoria',
+    )
 
 
 # Admin para el usuario personalizado de inicio de sesión

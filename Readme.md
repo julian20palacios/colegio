@@ -1,4 +1,8 @@
-**Activar el entorno:** .\env\Scripts\Activate
+**Activar el entorno:**
+
+cd backend
+
+.\env\Scripts\Activate
 
 **Requirimientos:** pip freeze > requirements.txt
 
@@ -28,3 +32,9 @@ C:\Users\Julian Herreño\OneDrive - Colombian Trade Company SAS\Escritorio\coleg
 
 VITE_API_BASE_URL=https://dataflow-backend-jp7b.onrender.com/api/
 VITE_STRIPE_PUBLIC_KEY=pk_test_51Ro9LtDFNKDjvoNlX3uGnwvGvBX8Tusev7DkR1aRkJBX2uSmrMOnPVSxIJngtMgk13MJs9Wa1mSqvxQkqWyFa11Q00MTpIVJUe
+
+# **LOGIN ADMIN**
+
+pxlxciosjulixn@gmail.com
+
+Pass-2023

@@ -6,7 +6,7 @@ from .serializers import CategoriaSerializer
 
 # Vista para validar el token de acceso
 from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, DjangoModelPermissions
 from rest_framework.response import Response
 
 @api_view(['GET'])
@@ -49,8 +49,9 @@ from rest_framework.permissions import IsAuthenticated
 class CategoriaViewSet(ModelViewSet):
     queryset = Categoria.objects.all().order_by('id_categoria')
     serializer_class = CategoriaSerializer
-    permission_classes = [IsAuthenticated]  
+    # Enforce Django model permissions: view/add/change/delete for Categoria.
+    # This also requires authentication by default.
+    permission_classes = [DjangoModelPermissions]
 
 
     
-
